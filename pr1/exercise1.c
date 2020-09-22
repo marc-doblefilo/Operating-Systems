@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
             exit(EXIT_SUCCESS);
         }
         else if (pid == -1) {
-            perror("Error creating a child");
+            perror("Error creating a child\n");
             exit(EXIT_FAILURE);
         }
     }
