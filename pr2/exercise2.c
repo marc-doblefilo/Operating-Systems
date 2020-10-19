@@ -5,6 +5,7 @@
 
 void count_lines(void* filenames) {
     int * number_lines = calloc(1, sizeof(int));
+    *number_lines = 1;
     char * filename = filenames;
     printf("%p \n", filenames);
     FILE * file_stream = fopen(filename, "r");
@@ -14,13 +15,13 @@ void count_lines(void* filenames) {
     }
 
     while(!feof(file_stream)){
-    char ch = fgetc(file_stream);
-    if (ch == '\n'){
-      *number_lines = *number_lines + 1;
+        char ch = fgetc(file_stream);
+        if (ch == '\n'){
+        *number_lines = *number_lines + 1;
+        }
     }
-  }
-  printf("%i\n",*number_lines );
-  pthread_exit( (void *) number_lines);
+    printf("%i\n",*number_lines);
+    pthread_exit( (void *) number_lines);
 }
 
 int main(int argc, char **argv){
@@ -50,6 +51,8 @@ int main(int argc, char **argv){
         total_lines = total_lines + *lines_array[i];
     }
 
+    free(*lines_array);
+    free(threads);
     printf("Number of lines: %d\n", total_lines);
     exit(EXIT_SUCCESS);
 }
