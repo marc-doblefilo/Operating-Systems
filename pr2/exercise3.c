@@ -43,14 +43,16 @@ int main(int argc, char **argv) {
             }
             pthread_create(&threads[i], NULL, (void *) sum_vector, (void *) v);
             pthread_join(threads[i], (void **) &sum_vectors[i]);
+            aux = 5;
         } else if(number_threads == 5) {
             for(int j = 0; j < 2; j++) {
                 v[j] = vector[j+aux];
-                printf("v[%i] ) %i\n", j, v[j]);
+                printf("v[%i] = %i\n", j, v[j]);
             }
-
+            pthread_create(&threads[i], NULL, (void *) sum_vector, (void *) v);
+            pthread_join(threads[i], (void **) &sum_vectors[i]);
+            aux = aux + 2;
         }
-        aux = 5;
     }
 
     for(int i = 0; i < number_threads; i++) {
