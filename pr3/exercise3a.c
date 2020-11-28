@@ -4,7 +4,7 @@
 #include <pthread.h>
 #include <semaphore.h>
 
-#define maxItems 5
+#define maxItems 10
 #define bufferSize 5
 
 sem_t stock;
