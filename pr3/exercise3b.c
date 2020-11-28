@@ -4,8 +4,8 @@
 #include <pthread.h>
 #include <semaphore.h>
 
-#define maxItems 10
-#define bufferSize 5
+#define maxItems 1
+#define bufferSize 3
 
 sem_t stock;
 pthread_mutex_t sem;
@@ -52,24 +52,24 @@ void *consumer(void *number)
 int main()
 {   
 
-    pthread_t pro[5],con[5];
+    pthread_t pro[3],con[3];
     pthread_mutex_init(&sem, NULL);
     sem_init(&s,0,bufferSize);
     sem_init(&e,0,0);
 
     int a[5] = {1,2,3,4,5};
 
-    for(int i = 0; i < 5; i++) {
+    for(int i = 0; i < 3; i++) {
         pthread_create(&pro[i], NULL, (void *)producer, (void *)&a[i]);
     }
-    for(int i = 0; i < 5; i++) {
+    for(int i = 0; i < 3; i++) {
         pthread_create(&con[i], NULL, (void *)consumer, (void *)&a[i]);
     }
 
-    for(int i = 0; i < 5; i++) {
+    for(int i = 0; i < 3; i++) {
         pthread_join(pro[i], NULL);
     }
-    for(int i = 0; i < 5; i++) {
+    for(int i = 0; i < 3; i++) {
         pthread_join(con[i], NULL);
     }
 
