@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
 
     if (signal(SIGUSR1, trataSennal) == SIG_ERR) {
 		perror("Signal error");
-   	printf("errno value= %d\n", errno);  
+   	    printf("errno value: %d\n", errno);  
 		exit(EXIT_FAILURE);
 	}
 
