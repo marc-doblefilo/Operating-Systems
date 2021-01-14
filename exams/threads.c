@@ -22,12 +22,12 @@ void *thread_value(void* id) {
     }
     if(*index % 2 == 0) {
         pthread_mutex_lock(&semaphore);
-        par = par + *sumValue;
+        par += *sumValue;
         printf("Thread %i has a value of: %i \n", *index, *sumValue);
         pthread_mutex_unlock(&semaphore);
     } else {
         pthread_mutex_lock(&semaphore);
-        impar = impar + *sumValue;
+        impar += *sumValue;
         printf("Thread %i has a value of: %i \n", *index, *sumValue);
         pthread_mutex_unlock(&semaphore);
     }
@@ -62,7 +62,7 @@ int main(int argc, char **argv) {
 
     for(int i = 1; i < numberThreads+1; i++) {
         if(i % 2 == 0) {
-            sumPar += *((int *)returnValues[i-1]);
+            sumPar += *(int *) returnValues[i-1];
         } else {
             sumImpar += *((int *)returnValues[i-1]);
         }
@@ -70,5 +70,6 @@ int main(int argc, char **argv) {
 
     printf("GLOBALS: Par: %i Impar: %i \n", par, impar);
     printf("THREADS JOIN: Par: %i Impar: %i \n", sumPar, sumImpar);
+    
     exit(EXIT_SUCCESS);
 }

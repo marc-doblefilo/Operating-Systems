@@ -35,8 +35,8 @@ int main(int argc, char **argv) {
             }
             if(i == 1) {
                 printf("Soy el hijo %d, mi padre %d y voy a abrir la calculadora \n", getpid(), getppid());
-                char *arg[] = {"/usr/bin/gnome-calculator", NULL};
-                execv(arg[0], arg);
+                char *args[]={"gnome-calculator", NULL};
+                execvp(args[0], args);
                 exit(EXIT_SUCCESS);
            }
         }
